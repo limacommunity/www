@@ -499,6 +499,13 @@
     return null;
   }
 
+  // Auto-play music on first user interaction
+    document.addEventListener('click', () => {
+      if (!isPlaying) {
+        playMusic();
+      }
+    }, { once: true });
+
   // Display the initial scene.
   switchScene(scenes[0]);
 
