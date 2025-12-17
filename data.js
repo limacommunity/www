@@ -47,7 +47,7 @@ var APP_DATA = {
       ]
     }
   ],
-  "name": "Project Title",
+  "name": "Lima Community Church of the Nazarene",
   "settings": {
     "mouseViewMode": "drag",
     "autorotateEnabled": true,
