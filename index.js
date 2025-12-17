@@ -122,6 +122,31 @@
       pauseIcon.style.display = 'none';
     }
     
+	function saveMusicState() {
+      savedMusicState.isPlaying = isPlaying;
+      savedMusicState.isSceneMusic = !!sceneMusic;
+      if (sceneMusic) {
+        savedMusicState.currentTime = sceneMusic.currentTime;
+      } else {
+        savedMusicState.currentTime = defaultMusic.currentTime;
+      }
+    }
+  
+    function restoreMusicState() {
+      if (savedMusicState.isSceneMusic && sceneMusic) {
+        sceneMusic.currentTime = savedMusicState.currentTime;
+        if (savedMusicState.isPlaying) {
+          playMusic();
+        }
+      } else {
+        defaultMusic.currentTime = savedMusicState.currentTime;
+        if (savedMusicState.isPlaying) {
+          playMusic();
+        }
+      }
+    }
+	
+	
     // Volume control
     const volumeBtn = document.getElementById('volumeBtn');
     const volumeSlider = document.getElementById('volumeSlider');
