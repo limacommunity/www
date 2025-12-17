@@ -1,4 +1,13 @@
 var APP_DATA = {
+  "menu": [
+    {
+		type: 'link',
+		id: 'link-web-site',
+		name: '🌐  Visit Our Website',
+		url: 'https://limacommunitychurch.com',
+		newTab: true // true = open in new tab, false = same tab
+    },
+  ]
   "scenes": [
     {
       "id": "www",
