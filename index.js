@@ -30,6 +30,14 @@
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
 
+  // Menu elements
+  var menuToggleElement = document.querySelector('#menuToggle');
+  var mainMenuElement = document.querySelector('#mainMenu');
+  var modalOverlay = document.querySelector('#modalOverlay');
+  var modalContent = document.querySelector('#modalContent');
+  var modalBody = document.querySelector('#modalBody');
+  var modalClose = document.querySelector('#modalClose');
+
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
     var setMode = function() {
@@ -508,7 +516,7 @@
   function createLinkHotspotElement(hotspot) {
 
     // Create wrapper element to hold icon and tooltip.
-    var wrapper = document.createElement('div');
+    var wrapper = document.create('div');
     wrapper.classList.add('hotspot');
     wrapper.classList.add('link-hotspot');
 
