@@ -7,7 +7,8 @@ var APP_DATA = {
 		url: 'https://limacommunitychurch.com',
 		newTab: true // true = open in new tab, false = same tab
     },
-  ]
+  ],
+  
   "scenes": [
     {
       "id": "www",
