@@ -8,6 +8,22 @@ var APP_DATA = {
       stopMusic: false
     },
 	{
+      type: 'link',
+      id: 'link-imnew',
+      name: 'I'm New Here',
+      url: 'https://limacc.com/im-new',
+      newTab: true,
+      stopMusic: true
+    },
+	{
+      type: 'link',
+      id: 'link-tour',
+      name: 'Virtual Tour',
+      url: 'https://limacc.com/tour',
+      newTab: false,
+      stopMusic: true
+    },
+	{
 	    type: 'group',
         id: 'group-about',
         name: '📖 About Us',
