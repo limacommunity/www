@@ -66,6 +66,119 @@
       mouseViewMode: data.settings.mouseViewMode
     }
   };
+  
+  // Music section begins
+  	const defaultMusic = new Audio('assets/2025-12-08music.mp3');
+    defaultMusic.loop = true;
+    defaultMusic.volume = 0.3;
+    
+    let sceneMusic = null;
+    let isPlaying = false;
+    let savedDefaultTime = 0;
+	let youtubePopupOpen = false;
+    let currentSceneIndex = 0;
+	let savedMusicState = { isPlaying: false, currentTime: 0, isSceneMusic: false };
+     
+    // Play/Pause functionality
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+    
+    function playMusic() {
+      if (sceneMusic) {
+        sceneMusic.play();
+      } else {
+        defaultMusic.play();
+      }
+      isPlaying = true;
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'block';
+    }
+    
+    function pauseMusic() {
+      if (sceneMusic) {
+        sceneMusic.pause();
+      } else {
+        defaultMusic.pause();
+      }
+      isPlaying = false;
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    }
+    
+    // Volume control
+    const volumeBtn = document.getElementById('volumeBtn');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeRange = document.getElementById('volumeRange');
+    
+    volumeBtn.addEventListener('click', () => {
+      volumeSlider.classList.toggle('active');
+    });
+    
+    volumeRange.addEventListener('input', (e) => {
+      const volume = e.target.value / 100;
+      defaultMusic.volume = volume;
+      if (sceneMusic) sceneMusic.volume = volume;
+    });
+    
+    // Close volume slider when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.volume-slider-container')) {
+        volumeSlider.classList.remove('active');
+      }
+    });
+    
+    // Scene music management
+    function switchToSceneMusic(sceneIndex) {
+      const scene = allScenes[sceneIndex];
+      
+      // If scene has custom music
+      if (scene.music) {
+        // Save default music position and pause
+        savedDefaultTime = defaultMusic.currentTime;
+        defaultMusic.pause();
+        
+        // Create and play scene music
+        if (sceneMusic) {
+          sceneMusic.pause();
+          sceneMusic = null;
+        }
+        
+        sceneMusic = new Audio(scene.music);
+        sceneMusic.volume = volumeRange.value / 100;
+		//override sceneMusicVolume to .85
+		sceneMusic.volume = 0.85;
+        
+        sceneMusic.addEventListener('ended', () => {
+          // Return to default music when scene music ends
+          sceneMusic = null;
+          defaultMusic.currentTime = savedDefaultTime;
+          if (isPlaying) defaultMusic.play();
+        });
+        
+        if (isPlaying) sceneMusic.play();
+      } else {
+        // No custom music for this scene, use default
+        if (sceneMusic) {
+          sceneMusic.pause();
+          sceneMusic = null;
+        }
+        
+        defaultMusic.currentTime = savedDefaultTime;
+        if (isPlaying) defaultMusic.play();
+      }
+    }
+    
+  
+  // Music section ends
 
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);

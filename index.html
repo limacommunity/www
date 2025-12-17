@@ -7,6 +7,113 @@
 <style> @-ms-viewport { width: device-width; } </style>
 <link rel="stylesheet" href="vendor/reset.min.css">
 <link rel="stylesheet" href="style.css">
+<style>
+
+    * { margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; font-family: Arial, sans-serif; }
+    #pano { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+	.music-controls {
+      position: absolute;
+      top: 0px;
+      right: 110px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+    
+    .music-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(67, 67, 67, 0.8);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      padding: 0;
+    }
+    
+    .music-button:hover {
+      background: rgba(100, 100, 100, 0.9);
+    }
+    
+    .music-button svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .volume-slider-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .volume-slider {
+      position: absolute;
+	  top: 0px;
+      right: 100px;
+      width: 0;
+      height: 40px;
+      background: rgba(67, 67, 67, 0.8);
+      border-radius: 20px;
+      overflow: hidden;
+      opacity: 0;
+      transition: width 0.3s, opacity 0.3s;
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+    
+    .volume-slider.active {
+      width: 120px;
+      opacity: 1;
+      padding: 0 15px;
+    }
+    
+    .volume-slider input[type="range"] {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.3);
+      outline: none;
+      border-radius: 2px;
+    }
+    
+    .volume-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+    
+    .volume-slider input[type="range"]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .scene-nav {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      width: 280px;
+      z-index: 1000;
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
+    }
+
+</style>
 </head>
 <body class="single-scene view-control-buttons">
 
@@ -24,6 +131,28 @@
 
 <div id="titleBar">
   <h1 class="sceneName"></h1>
+</div>
+
+<div class="music-controls">
+    <button class="music-button" id="playPauseBtn" title="Play/Pause Music">
+      <svg id="playIcon" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;">
+        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+      </svg>
+    </button>
+    
+    <div class="volume-slider-container">
+      <button class="music-button" id="volumeBtn" title="Volume">
+        <svg id="volumeIcon" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+      </button>
+      <div class="volume-slider" id="volumeSlider">
+        <input type="range" id="volumeRange" min="0" max="100" value="50">
+      </div>
+    </div>
 </div>
 
 <a href="javascript:void(0)" id="autorotateToggle">
