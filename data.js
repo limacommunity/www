@@ -53,7 +53,7 @@ var APP_DATA = {
       id: 'link-web-site',
 	  name: '🌐  Visit Our Website',
 	  url: 'https://limacommunitychurch.com',
-	  newTab: true
+	  newTab: true,
       stopMusic: true
     },
 	{
