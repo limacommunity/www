@@ -20,12 +20,31 @@ var APP_DATA = {
       ],
       "faceSize": 960,
       "initialViewParameters": {
-        "yaw": -0.15090835726707041,
-        "pitch": 0.0006780304257407721,
+        "yaw": -0.4248345261881141,
+        "pitch": 0,
         "fov": 1.4996545601207187
       },
       "linkHotspots": [],
-      "infoHotspots": []
+      "infoHotspots": [
+        {
+          "yaw": -0.027983973780564497,
+          "pitch": 0.1554934256337841,
+          "title": "Worship",
+          "text": "Worship text"
+        },
+        {
+          "yaw": 0.32614813024450484,
+          "pitch": 0.16105605682769308,
+          "title": "Sermons",
+          "text": "Sermons text"
+        },
+        {
+          "yaw": 0.1838138789089534,
+          "pitch": 0.4051673205002544,
+          "title": "Website",
+          "text": "website text"
+        }
+      ]
     }
   ],
   "name": "Project Title",
