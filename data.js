@@ -1,18 +1,17 @@
 var APP_DATA = {
   "menu": [
-    {
       {
-          type: 'popup',
-          id: 'popup-welcome',
-          name: 'Welcome to Lima Community Church',
-          content: '<h2>Welcome to Lima Community Church</h2><p>We are glad you are here! Feel free to explore our virtual tour and learn more about our community.</p>',
-          stopMusic: false
+        type: 'popup',
+        id: 'popup-welcome',
+        name: 'Welcome to Lima Community Church',
+        content: '<h2>Welcome to Lima Community Church</h2><p>We are glad you are here! Feel free to explore our virtual tour and learn more about our community.</p>',
+        stopMusic: false
       },
-	  type: 'group',
-      id: 'group-about',
-      name: '📖 About Us',
-      expanded: false,
-      items: [
+	    type: 'group',
+        id: 'group-about',
+        name: '📖 About Us',
+        expanded: false,
+        items: [
         {
           type: 'link',
           id: 'link-web-site',
