@@ -499,6 +499,9 @@
     return null;
   }
 
+  //Start Autorotate
+  startAutorotate();
+
   // Auto-play music on first user interaction
     document.addEventListener('click', () => {
       if (!isPlaying) {
