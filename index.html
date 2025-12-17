@@ -112,12 +112,262 @@
       max-height: calc(100vh - 60px);
       overflow-y: auto;
     }
+	 /* Menu System Styles */
+    #menuToggle {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(67, 67, 67, 0.8);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 2000;
+    }
+
+    #menuToggle:hover {
+      background: rgba(100, 100, 100, 0.9);
+    }
+
+    #menuToggle.enabled {
+      background: rgba(100, 100, 100, 0.9);
+    }
+
+    #menuToggle svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+    }
+
+    #mainMenu {
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      width: 280px;
+      max-height: calc(100vh - 80px);
+      background: rgba(67, 67, 67, 0.95);
+      border-radius: 8px;
+      padding: 10px 0;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      z-index: 1999;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    #mainMenu.enabled {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .menu-group {
+      margin: 5px 0;
+    }
+
+    .menu-group-header {
+      padding: 12px 15px;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-group-header:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-group-arrow {
+      transition: transform 0.3s;
+      font-size: 12px;
+    }
+
+    .menu-group.collapsed .menu-group-arrow {
+      transform: rotate(-90deg);
+    }
+
+    .menu-group-items {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .menu-group.collapsed .menu-group-items {
+      max-height: 0;
+    }
+
+    .menu-item {
+      padding: 10px 15px 10px 30px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+    }
+
+    .menu-item-top {
+      padding-left: 15px;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+    }
+
+    .modal-overlay.visible {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      background: white;
+      border-radius: 8px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content.iframe-modal {
+      width: 90%;
+      height: 90%;
+      max-width: 1200px;
+      max-height: 800px;
+      padding: 0;
+      background: black;
+    }
+
+    .modal-content.popup-modal {
+      padding: 30px;
+      max-width: 600px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-close svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+
+    .modal-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .modal-popup-content {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .modal-popup-content h2 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .modal-popup-content p {
+      margin-bottom: 10px;
+    }
+
+    .modal-popup-content a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .modal-popup-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 500px) {
+      #mainMenu {
+        width: calc(100vw - 20px);
+        max-height: calc(100vh - 120px);
+      }
+
+      .modal-content.iframe-modal {
+        width: 95%;
+        height: 80%;
+      }
+    }
+
 
 </style>
 </head>
 <body class="single-scene view-control-buttons">
 
 <div id="pano"></div>
+
+<!-- Menu Toggle Button -->
+<button id="menuToggle" title="Menu">
+  <svg viewBox="0 0 24 24">
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+  </svg>
+</button>
+
+<!-- Main Menu -->
+<div id="mainMenu"></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content" id="modalContent">
+    <button class="modal-close" id="modalClose">
+      <svg viewBox="0 0 24 24">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
 
 <div id="sceneList">
   <ul class="scenes">

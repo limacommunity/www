@@ -291,6 +291,154 @@
   controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
   controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
 
+ // Menu System Functions
+  function buildMenu() {
+    if (!data.menu || !data.menu.length) return;
+    
+    mainMenuElement.innerHTML = '';
+    
+    data.menu.forEach(function(item) {
+      if (item.type === 'group') {
+        var groupEl = createMenuGroup(item);
+        mainMenuElement.appendChild(groupEl);
+      } else {
+        var itemEl = createMenuItem(item, true);
+        mainMenuElement.appendChild(itemEl);
+      }
+    });
+  }
+  
+  function createMenuGroup(group) {
+    var groupDiv = document.createElement('div');
+    groupDiv.className = 'menu-group';
+    if (!group.expanded) {
+      groupDiv.classList.add('collapsed');
+    }
+    
+    var header = document.createElement('div');
+    header.className = 'menu-group-header';
+    header.innerHTML = group.name + ' <span class="menu-group-arrow">▼</span>';
+    
+    header.addEventListener('click', function() {
+      groupDiv.classList.toggle('collapsed');
+    });
+    
+    var itemsContainer = document.createElement('div');
+    itemsContainer.className = 'menu-group-items';
+    
+    if (group.items && group.items.length) {
+      group.items.forEach(function(item) {
+        var itemEl = createMenuItem(item, false);
+        itemsContainer.appendChild(itemEl);
+      });
+    }
+    
+    groupDiv.appendChild(header);
+    groupDiv.appendChild(itemsContainer);
+    
+    return groupDiv;
+  }
+  
+  function createMenuItem(item, isTopLevel) {
+    var itemEl = document.createElement('a');
+    itemEl.href = 'javascript:void(0)';
+    itemEl.className = 'menu-item';
+    if (isTopLevel) {
+      itemEl.classList.add('menu-item-top');
+    }
+    itemEl.innerHTML = item.name;
+    
+    itemEl.addEventListener('click', function(e) {
+      e.preventDefault();
+      handleMenuItemClick(item);
+    });
+    
+    return itemEl;
+  }
+  
+  function handleMenuItemClick(item) {
+    // Handle music stopping if required
+    if (item.stopMusic) {
+      saveMusicState();
+      pauseMusic();
+    }
+    
+    switch(item.type) {
+      case 'link':
+        if (item.newTab) {
+          window.open(item.url, '_blank');
+        } else {
+          window.location.href = item.url;
+        }
+        break;
+        
+      case 'iframe':
+        showIframeModal(item.url);
+        break;
+        
+      case 'popup':
+        showPopupModal(item.content);
+        break;
+        
+      case 'scene':
+        var targetScene = findSceneById(item.sceneId);
+        if (targetScene) {
+          switchScene(targetScene);
+          hideMenu();
+        }
+        break;
+    }
+  }
+  
+  function showIframeModal(url) {
+    modalContent.className = 'modal-content iframe-modal';
+    modalBody.innerHTML = '<iframe class="modal-iframe" src="' + url + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    modalOverlay.classList.add('visible');
+    hideMenu();
+  }
+  
+  function showPopupModal(content) {
+    modalContent.className = 'modal-content popup-modal';
+    modalBody.innerHTML = '<div class="modal-popup-content">' + content + '</div>';
+    modalOverlay.classList.add('visible');
+    hideMenu();
+  }
+  
+  function hideModal() {
+    modalOverlay.classList.remove('visible');
+    modalBody.innerHTML = '';
+    
+    // Restore music state if it was playing before
+    if (savedMusicState.isPlaying) {
+      restoreMusicState();
+    }
+  }
+  
+  function toggleMenu() {
+    mainMenuElement.classList.toggle('enabled');
+    menuToggleElement.classList.toggle('enabled');
+  }
+  
+  function hideMenu() {
+    mainMenuElement.classList.remove('enabled');
+    menuToggleElement.classList.remove('enabled');
+  }
+  
+  // Menu event listeners
+  menuToggleElement.addEventListener('click', toggleMenu);
+  
+  modalClose.addEventListener('click', hideModal);
+  
+  modalOverlay.addEventListener('click', function(e) {
+    if (e.target === modalOverlay) {
+      hideModal();
+    }
+  });
+  
+  // Build the menu
+  buildMenu();
+
+
   function sanitize(s) {
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }

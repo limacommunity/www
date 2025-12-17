@@ -1,12 +1,103 @@
 var APP_DATA = {
   "menu": [
     {
-		type: 'link',
-		id: 'link-web-site',
-		name: '🌐  Visit Our Website',
-		url: 'https://limacommunitychurch.com',
-		newTab: true // true = open in new tab, false = same tab
+      type: 'group',
+      id: 'group-about',
+      name: '📖 About Us',
+      expanded: true,
+      items: [
+        {
+          type: 'link',
+          id: 'link-web-site',
+          name: '🌐 Visit Our Website',
+          url: 'https://limacommunitychurch.com',
+          newTab: true,
+          stopMusic: false
+        },
+        {
+          type: 'popup',
+          id: 'popup-welcome',
+          name: '👋 Welcome Message',
+          content: '<h2>Welcome to Lima Community Church</h2><p>We are glad you are here! Feel free to explore our virtual tour and learn more about our community.</p>',
+          stopMusic: false
+        }
+      ]
     },
+    {
+      type: 'group',
+      id: 'group-media',
+      name: '🎥 Media',
+      expanded: true,
+      items: [
+        {
+          type: 'iframe',
+          id: 'iframe-youtube-welcome',
+          name: '▶️ Welcome Video',
+          url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          stopMusic: true
+        },
+        {
+          type: 'iframe',
+          id: 'iframe-vimeo-tour',
+          name: '▶️ Church Tour',
+          url: 'https://player.vimeo.com/video/148751763',
+          stopMusic: true
+        },
+        {
+          type: 'popup',
+          id: 'popup-service-times',
+          name: '⏰ Service Times',
+          content: '<h2>Service Times</h2><p><strong>Sunday Morning:</strong> 10:00 AM<br><strong>Sunday Evening:</strong> 6:00 PM<br><strong>Wednesday:</strong> 7:00 PM</p>',
+          stopMusic: false
+        }
+      ]
+    },
+    {
+      type: 'group',
+      id: 'group-connect',
+      name: '🤝 Connect',
+      expanded: true,
+      items: [
+        {
+          type: 'link',
+          id: 'link-facebook',
+          name: '📱 Facebook',
+          url: 'https://facebook.com',
+          newTab: true,
+          stopMusic: false
+        },
+        {
+          type: 'link',
+          id: 'link-contact',
+          name: '✉️ Contact Us',
+          url: 'https://limacommunitychurch.com/contact',
+          newTab: true,
+          stopMusic: false
+        },
+        {
+          type: 'popup',
+          id: 'popup-location',
+          name: '📍 Location & Directions',
+          content: '<h2>Find Us</h2><p><strong>Address:</strong><br>123 Church Street<br>Lima, OH 45801</p><p><a href="https://maps.google.com" target="_blank">Get Directions</a></p>',
+          stopMusic: false
+        }
+      ]
+    },
+    {
+      type: 'scene',
+      id: 'scene-sanctuary',
+      name: '⛪ View Sanctuary',
+      sceneId: 'www',
+      stopMusic: false
+    },
+    {
+      type: 'link',
+      id: 'link-donate',
+      name: '💝 Give Online',
+      url: 'https://limacommunitychurch.com/give',
+      newTab: true,
+      stopMusic: false
+    }
   ],
   
   "scenes": [
