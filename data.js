@@ -1,8 +1,8 @@
 var APP_DATA = {
   "scenes": [
     {
-      "id": "0-holy-forever-most-hands-raised-360",
-      "name": "Holy-Forever-Most-Hands-Raised-360",
+      "id": "www",
+      "name": "Lima Community Church",
       "levels": [
         {
           "tileSize": 256,
