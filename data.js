@@ -24,6 +24,39 @@ var APP_DATA = {
       stopMusic: true
     },
 	{
+      type: 'link',
+      id: 'link-service-times',
+      name: 'Service Times',
+      url: 'https://www.limacommunitychurch.com/service-times-directions',
+      newTab: false,
+      stopMusic: true
+    },
+	{
+      type: 'link',
+      id: 'link-service-times',
+      name: 'What We Believe',
+      url: 'https://www.limacommunitychurch.com/what-we-believe',
+      newTab: false,
+      stopMusic: true
+    },
+	{
+      type: 'link',
+      id: 'link-what-we-believe',
+      name: 'What We Believe',
+      url: 'https://www.limacommunitychurch.com/what-we-believe',
+      newTab: false,
+      stopMusic: true
+    },
+	{
+      type: 'link',
+      id: 'link-web-site',
+      id: 'link-web-site',
+	  name: '🌐  Visit Our Website',
+	  url: 'https://limacommunitychurch.com',
+	  newTab: true
+      stopMusic: true
+    },
+	{
 	    type: 'group',
         id: 'group-about',
         name: '📖 About Us',
