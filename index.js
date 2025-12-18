@@ -451,6 +451,7 @@
     console.log('Toggle menu clicked');
     console.log('Current classes:', mainMenuElement.className);
     mainMenuElement.classList.toggle('hidden');
+	mainMenuElement.classList.toggle('enabled');
     console.log('New classes:', mainMenuElement.className);
   }
   
@@ -694,7 +695,6 @@
   // Display the initial scene.
   switchScene(scenes[0]);
   // Menu event listeners
-  menuToggleElement.addEventListener('click', toggleMenu);
   toggleMenu();
 
 })();
