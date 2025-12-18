@@ -590,7 +590,7 @@ function showWorshipModal(hotspot) {
       
 	  saveMusicState();
       pauseMusic();
-	  
+	  console.log('pauseMusic');
       var playlistItems = modalBody.querySelectorAll('.playlist-item');
       playlistItems.forEach(function(item) {
         item.addEventListener('click', function() {
