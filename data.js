@@ -170,6 +170,15 @@ var APP_DATA = {
               "endTime": 1861
             }
           ]
+        },
+		{
+          "type": "link",
+          "yaw": 0.1838138789089534,
+          "pitch": 0.3,
+          "title": "Visit our website for more information",
+          "text": "Learn More",
+          "url": "https://limacommunitychurch.com",
+          "newTab": true
         }
 	  ]
     }

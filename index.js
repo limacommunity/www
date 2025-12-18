@@ -502,78 +502,55 @@
     wrapper.classList.add('custom-hotspot');
     wrapper.classList.add('custom-hotspot-' + hotspot.type);
 
-    var icon = document.createElement('div');
-    icon.classList.add('custom-hotspot-icon');
-    
-    if (hotspot.type === 'worship') {
-      icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
-    } else if (hotspot.type === 'sermon') {
-      icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+    if (hotspot.type === 'link') {
+      // External link button hotspot
+      var button = document.createElement('div');
+      button.classList.add('custom-hotspot-link-button');
+      button.innerHTML = hotspot.text || 'Click Here';
+      wrapper.appendChild(button);
+      
+      wrapper.addEventListener('click', function() {
+        if (hotspot.newTab) {
+          window.open(hotspot.url, '_blank');
+        } else {
+          window.location.href = hotspot.url;
+        }
+      });
+    } else {
+      // Icon-based hotspots (worship, sermon)
+      var icon = document.createElement('div');
+      icon.classList.add('custom-hotspot-icon');
+      
+      if (hotspot.type === 'worship') {
+        icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
+      } else if (hotspot.type === 'sermon') {
+        icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+      }
+
+      wrapper.appendChild(icon);
+
+      wrapper.addEventListener('click', function() {
+        if (hotspot.type === 'worship') {
+          showWorshipModal(hotspot);
+        } else if (hotspot.type === 'sermon') {
+          showSermonModal(hotspot);
+        }
+      });
     }
 
-    wrapper.appendChild(icon);
-
-    wrapper.addEventListener('click', function() {
-      if (hotspot.type === 'worship') {
-        showWorshipModal(hotspot);
-      } else if (hotspot.type === 'sermon') {
-        showSermonModal(hotspot);
-      }
-    });
+    // Add tooltip if title exists
+    if (hotspot.title) {
+      var tooltip = document.createElement('div');
+      tooltip.classList.add('custom-hotspot-tooltip');
+      tooltip.innerHTML = hotspot.title;
+      wrapper.appendChild(tooltip);
+    }
 
     stopTouchAndScrollEventPropagation(wrapper);
 
     return wrapper;
   }
 
-  function showWorshipModal(hotspot) {
-    saveMusicState();
-    pauseMusic();
-
-    var isMobile = document.body.classList.contains('mobile');
-    var songListPosition = isMobile ? 'bottom' : 'right';
-
-    modalContent.className = 'modal-content media-player-modal';
-    
-    var html = '<div class="media-player-container ' + songListPosition + '">';
-    html += '<div class="media-player-video">';
-    html += '<div id="mediaPlayerFrame"></div>';
-    html += '</div>';
-    html += '<div class="media-player-playlist">';
-    html += '<h3>' + hotspot.title + '</h3>';
-    html += '<div class="playlist-items">';
-    
-    hotspot.videos.forEach(function(video, index) {
-      var activeClass = index === 0 ? 'active' : '';
-      html += '<div class="playlist-item ' + activeClass + '" data-index="' + index + '">';
-      html += '<div class="playlist-item-title">' + video.title + '</div>';
-      if (hotspot.showTimes) {
-        var startTime = formatTime(video.startTime);
-        var endTime = formatTime(video.endTime);
-        html += '<div class="playlist-item-time">' + startTime + ' - ' + endTime + '</div>';
-      }
-      html += '</div>';
-    });
-    
-    html += '</div></div></div>';
-    
-    modalBody.innerHTML = html;
-    modalOverlay.classList.add('visible');
-
-    setTimeout(function() {
-      loadVideo(hotspot.videos[0], 0);
-      
-      var playlistItems = modalBody.querySelectorAll('.playlist-item');
-      playlistItems.forEach(function(item) {
-        item.addEventListener('click', function() {
-          var index = parseInt(this.getAttribute('data-index'));
-          playlistItems.forEach(function(pi) { pi.classList.remove('active'); });
-          this.classList.add('active');
-          loadVideo(hotspot.videos[index], index);
-        });
-      });
-    }, 100);
-  }
 
   function showSermonModal(hotspot) {
     saveMusicState();
