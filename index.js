@@ -551,6 +551,54 @@
     return wrapper;
   }
 
+function showWorshipModal(hotspot) {
+    saveMusicState();
+    pauseMusic();
+
+    var isMobile = document.body.classList.contains('mobile');
+    var songListPosition = isMobile ? 'bottom' : 'right';
+
+    modalContent.className = 'modal-content media-player-modal';
+    
+    var html = '<div class="media-player-container ' + songListPosition + '">';
+    html += '<div class="media-player-video">';
+    html += '<div id="mediaPlayerFrame"></div>';
+    html += '</div>';
+    html += '<div class="media-player-playlist">';
+    html += '<h3>' + hotspot.title + '</h3>';
+    html += '<div class="playlist-items">';
+    
+    hotspot.videos.forEach(function(video, index) {
+      var activeClass = index === 0 ? 'active' : '';
+      html += '<div class="playlist-item ' + activeClass + '" data-index="' + index + '">';
+      html += '<div class="playlist-item-title">' + video.title + '</div>';
+      if (hotspot.showTimes) {
+        var startTime = formatTime(video.startTime);
+        var endTime = formatTime(video.endTime);
+        html += '<div class="playlist-item-time">' + startTime + ' - ' + endTime + '</div>';
+      }
+      html += '</div>';
+    });
+    
+    html += '</div></div></div>';
+    
+    modalBody.innerHTML = html;
+    modalOverlay.classList.add('visible');
+
+    setTimeout(function() {
+      loadVideo(hotspot.videos[0], 0);
+      
+      var playlistItems = modalBody.querySelectorAll('.playlist-item');
+      playlistItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          var index = parseInt(this.getAttribute('data-index'));
+          playlistItems.forEach(function(pi) { pi.classList.remove('active'); });
+          this.classList.add('active');
+          loadVideo(hotspot.videos[index], index);
+        });
+      });
+    }, 100);
+  }
 
   function showSermonModal(hotspot) {
     saveMusicState();
