@@ -12,7 +12,7 @@ var APP_DATA = {
       id: 'link-imnew',
       name: 'I\'m New Here',
       url: 'https://limacc.com/im-new',
-      newTab: true,
+      newTab: false,
       stopMusic: true
     },
 	{
