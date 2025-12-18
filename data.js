@@ -147,26 +147,38 @@ var APP_DATA = {
           "type": "sermon",
           "yaw": 0.32614813024450484,
           "pitch": 0.05,
-          "title": "Recent Sermons",
-          "showTimes": true,
+          "title": "Sermons - Press [ ] in lower corner for full screen",
+          "showTimes": false,
           "videos": [
             {
-              "title": "Faith in Action",
-              "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-              "startTime": 0,
-              "endTime": 1800
+              "title": "DNA - Chip",
+              "url": "https://www.youtube.com/watch?v=O9o4Rbw6syc",
+              "startTime": 1,
+              "endTime": 2772
             },
             {
-              "title": "Walking in Grace",
-              "url": "https://vimeo.com/148751763",
-              "startTime": 0,
-              "endTime": 1500
+              "title": "Keeping It Real - Justin",
+              "url": "https://www.youtube.com/watch?v=hkXpgGQqOSY",
+              "startTime": 1,
+              "endTime": 2237
             },
             {
-              "title": "The Power of Prayer",
-              "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-              "startTime": 0,
-              "endTime": 2000
+              "title": "Keeping It Real - Chip",
+              "url": "https://www.youtube.com/watch?v=1eRJXX4-C-A",
+              "startTime": 1,
+              "endTime": 2695
+            },
+			{
+              "title": "Joy FULL - Brad",
+              "url": "https://www.youtube.com/watch?v=UwNX0uAF7uE",
+              "startTime": 1,
+              "endTime": 1804
+            },
+			{
+              "title": "The Twelve - Elizabeth",
+              "url": "https://www.youtube.com/watch?v=TFP73tbP-fU",
+              "startTime": 1,
+              "endTime": 1861
             }
           ]
         }
