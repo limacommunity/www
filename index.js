@@ -472,6 +472,10 @@
   
   // Build the menu
   buildMenu();
+  
+  if (document.body.classList.contains('mobile')) {
+        hideMenu();
+      }
 
 
   function sanitize(s) {
@@ -694,7 +698,6 @@
 
   // Display the initial scene.
   switchScene(scenes[0]);
-  // Menu event listeners
-  toggleMenu();
+  
 
 })();
