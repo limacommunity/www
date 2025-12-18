@@ -112,9 +112,11 @@
     }
     
     function pauseMusic() {
-      sceneMusic.pause();
-      defaultMusic.pause();
-      
+      if (sceneMusic) {
+        sceneMusic.pause();
+      } else {
+        defaultMusic.pause();
+      }
       isPlaying = false;
       playIcon.style.display = 'block';
       pauseIcon.style.display = 'none';
