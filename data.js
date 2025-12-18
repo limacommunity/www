@@ -95,12 +95,7 @@ var APP_DATA = {
 	    
 	  ],  
       "infoHotspots": [
-        {
-          "yaw": 0.1838138789089534,
-          "pitch": 0.4051673205002544,
-          "title": "Website",
-          "text": "TODO - Add link to website or tour."
-        }
+
       ],
 	  "customHotspots": [
         {
@@ -174,7 +169,7 @@ var APP_DATA = {
 		{
           "type": "link",
           "yaw": 0.1838138789089534,
-          "pitch": 0.3,
+          "pitch": 0.4051673205002544,
           "title": "Tour our church!",
           "text": "⛪ Virtual Tour",
           "url": "https://limacommunitychurch.com/tour",
@@ -192,3 +187,11 @@ var APP_DATA = {
 	"customMusic": true
   }
 };
+     "infoHotspots": [
+        {
+          "yaw": 0.1838138789089534,
+          "pitch": 0.4051673205002544,
+          "title": "Website",
+          "text": "TODO - Add link to website or tour."
+        }
+      ],
