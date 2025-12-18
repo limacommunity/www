@@ -96,30 +96,18 @@ var APP_DATA = {
 	  ],  
       "infoHotspots": [
         {
-          "yaw": -0.027983973780564497,
-          "pitch": 0.1554934256337841,
-          "title": "Worship",
-          "text": "Worship text"
-        },
-        {
-          "yaw": 0.32614813024450484,
-          "pitch": 0.16105605682769308,
-          "title": "Sermons",
-          "text": "Sermons text"
-        },
-        {
           "yaw": 0.1838138789089534,
           "pitch": 0.4051673205002544,
           "title": "Website",
-          "text": "website text"
+          "text": "TODO - Add link to website or tour."
         }
       ],
 	  "customHotspots": [
         {
           "type": "worship",
           "yaw": -0.027983973780564497,
-          "pitch": 0.05,
-          "title": "Worship Songs",
+          "pitch": 0.1554934256337841,
+          "text": "Worship Songs",
 		  "title": "Worship Songs - Press [ ] in lower corner for full screen",
           "showTimes": false,
           "videos": [
@@ -146,7 +134,8 @@ var APP_DATA = {
         {
           "type": "sermon",
           "yaw": 0.32614813024450484,
-          "pitch": 0.05,
+          "pitch": 0.16105605682769308,
+		  "text": "Sermons",
           "title": "Sermons - Press [ ] in lower corner for full screen",
           "showTimes": false,
           "videos": [
