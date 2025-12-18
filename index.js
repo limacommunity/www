@@ -453,14 +453,11 @@
  }
   
  function toggleMenu() {
-    console.log('Toggle menu clicked');
-    console.log('Current classes:', mainMenuElement.className);
     mainMenuElement.classList.toggle('hidden');
 	mainMenuElement.classList.toggle('enabled');
-    console.log('New classes:', mainMenuElement.className);
   }
   
-  function hideMenu() {
+ function hideMenu() {
     mainMenuElement.classList.add('hidden');
 	mainMenuElement.classList.remove('enabled');
 	menuToggleElement.classList.remove('enabled');
