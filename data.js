@@ -41,9 +41,17 @@ var APP_DATA = {
     },
 	{
       type: 'link',
-      id: 'link-what-we-believe',
-      name: 'What We Believe',
-      url: 'https://www.limacommunitychurch.com/what-we-believe',
+      id: 'link-our-church-app',
+      name: 'Our Church App',
+      url: 'https://www.limacommunitychurch.com/app',
+      newTab: false,
+      stopMusic: true
+    },
+	{
+      type: 'link',
+      id: 'link-preregister-kiddos',
+      name: 'Pre-Register Kiddos',
+      url: 'https://www.limacommunitychurch.com/im-new-plan-for-kiddos',
       newTab: false,
       stopMusic: true
     },
