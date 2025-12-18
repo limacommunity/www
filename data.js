@@ -91,35 +91,8 @@ var APP_DATA = {
         "pitch": 0,
         "fov": 1.4996545601207187
       },
-      "hotspots": [
-	    {
-		  "id": "worship-songs-santuary-center-aisle-worship",
-		  "type": "youtube",
-		  "yaw": -.28,
-		  "pitch": 0.15,
-		  "text": "Worship Songs",
-		  "title": "Worship Songs - Press [ ] in lower corner for full screen",
-		  "playlist": [
-		    {
-				"videoId": "kfhCbhhjDIM",      // YouTube video ID
-				"title": "Break Every Chain",      // Display name
-				"start": 2390,                     // Optional: start time (seconds)
-				"end": 2795                       // Optional: end time (seconds)
-			},
-			{
-				"videoId": "FwokiOJ-QIA",      // YouTube video ID
-				"title": "Holy Forever",      // Display name
-				"start": 968,                     // Optional: start time (seconds)
-				"end": 1259                       // Optional: end time (seconds)
-			},
-			{
-				"videoId": "FwokiOJ-QIA",
-				"title": "Peace Be Still",
-				"start": 694,
-				"end": 955
-			}
-		  ]
-		}
+      "linkHotspots": [
+	    
 	  ],  
       "infoHotspots": [
         {
