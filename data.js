@@ -120,25 +120,26 @@ var APP_DATA = {
           "yaw": -0.027983973780564497,
           "pitch": 0.05,
           "title": "Worship Songs",
+		  "title": "Worship Songs - Press [ ] in lower corner for full screen",
           "showTimes": false,
           "videos": [
             {
-              "title": "Amazing Grace",
-              "url": "https://www.youtube.com/watch?v=CDdvReNKKuk",
-              "startTime": 0,
-              "endTime": 240
+              "title": "Break Every Chain",
+              "url": "https://www.youtube.com/watch?v=kfhCbhhjDIM",
+              "startTime": 2390,
+              "endTime": 2795
             },
             {
-              "title": "How Great Thou Art",
-              "url": "https://www.youtube.com/watch?v=Cc2KPbLowL4",
-              "startTime": 0,
-              "endTime": 180
+              "title": "Holy Forever",
+              "url": "https://www.youtube.com/watch?v=FwokiOJ-QIA",
+              "startTime": 968,
+              "endTime": 1259
             },
             {
-              "title": "Blessed Assurance",
-              "url": "https://www.youtube.com/watch?v=5qap5aO4i9A",
-              "startTime": 0,
-              "endTime": 200
+              "title": "Peace Be Still",
+              "url": "https://www.youtube.com/watch?v=FwokiOJ-QIA",
+              "startTime": 694,
+              "endTime": 955
             }
           ]
         },
