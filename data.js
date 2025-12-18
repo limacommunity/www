@@ -69,7 +69,7 @@ var APP_DATA = {
   "scenes": [
     {
       "id": "www",
-      "name": "Lima Community Church of the Nazarene",
+      "name": "Lima Community Church",
       "levels": [
         {
           "tileSize": 256,
