@@ -176,7 +176,7 @@ var APP_DATA = {
           "yaw": 0.1838138789089534,
           "pitch": 0.3,
           "title": "Tour our church!",
-          "text": "⛪ Tour",
+          "text": "⛪ Virtual Tour",
           "url": "https://limacommunitychurch.com/tour",
           "newTab": true
         }
