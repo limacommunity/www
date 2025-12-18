@@ -449,6 +449,7 @@
   
  function showMenu() {
    mainMenuElement.classList.add('enabled');
+   menuToggleElement.classList.add('enabled');
  }
   
  function toggleMenu() {
@@ -461,6 +462,9 @@
   
   function hideMenu() {
     mainMenuElement.classList.add('hidden');
+	mainMenuElement.classList.remove('enabled');
+	menuToggleElement.classList.remove('enabled');
+	
   }
   
   // Menu event listeners
