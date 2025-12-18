@@ -588,6 +588,9 @@ function showWorshipModal(hotspot) {
     setTimeout(function() {
       loadVideo(hotspot.videos[0], 0);
       
+	  saveMusicState();
+      pauseMusic();
+	  
       var playlistItems = modalBody.querySelectorAll('.playlist-item');
       playlistItems.forEach(function(item) {
         item.addEventListener('click', function() {
