@@ -245,6 +245,14 @@
       var element = createInfoHotspotElement(hotspot);
       scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
     });
+	
+	// Create custom hotspots (worship songs, sermons, etc.)
+    if (data.customHotspots) {
+      data.customHotspots.forEach(function(hotspot) {
+        var element = createCustomHotspotElement(hotspot);
+        scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+      });
+    }
 
     return {
       data: data,
@@ -485,6 +493,249 @@
 		showMenu();
 	  }
 
+
+//customHotspots startsWith
+// Custom Hotspot Functions
+  function createCustomHotspotElement(hotspot) {
+    var wrapper = document.createElement('div');
+    wrapper.classList.add('hotspot');
+    wrapper.classList.add('custom-hotspot');
+    wrapper.classList.add('custom-hotspot-' + hotspot.type);
+
+    var icon = document.createElement('div');
+    icon.classList.add('custom-hotspot-icon');
+    
+    if (hotspot.type === 'worship') {
+      icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
+    } else if (hotspot.type === 'sermon') {
+      icon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+    }
+
+    wrapper.appendChild(icon);
+
+    wrapper.addEventListener('click', function() {
+      if (hotspot.type === 'worship') {
+        showWorshipModal(hotspot);
+      } else if (hotspot.type === 'sermon') {
+        showSermonModal(hotspot);
+      }
+    });
+
+    stopTouchAndScrollEventPropagation(wrapper);
+
+    return wrapper;
+  }
+
+  function showWorshipModal(hotspot) {
+    saveMusicState();
+    pauseMusic();
+
+    var isMobile = document.body.classList.contains('mobile');
+    var songListPosition = isMobile ? 'bottom' : 'right';
+
+    modalContent.className = 'modal-content media-player-modal';
+    
+    var html = '<div class="media-player-container ' + songListPosition + '">';
+    html += '<div class="media-player-video">';
+    html += '<div id="mediaPlayerFrame"></div>';
+    html += '</div>';
+    html += '<div class="media-player-playlist">';
+    html += '<h3>' + hotspot.title + '</h3>';
+    html += '<div class="playlist-items">';
+    
+    hotspot.videos.forEach(function(video, index) {
+      var activeClass = index === 0 ? 'active' : '';
+      html += '<div class="playlist-item ' + activeClass + '" data-index="' + index + '">';
+      html += '<div class="playlist-item-title">' + video.title + '</div>';
+      if (hotspot.showTimes) {
+        var startTime = formatTime(video.startTime);
+        var endTime = formatTime(video.endTime);
+        html += '<div class="playlist-item-time">' + startTime + ' - ' + endTime + '</div>';
+      }
+      html += '</div>';
+    });
+    
+    html += '</div></div></div>';
+    
+    modalBody.innerHTML = html;
+    modalOverlay.classList.add('visible');
+
+    setTimeout(function() {
+      loadVideo(hotspot.videos[0], 0);
+      
+      var playlistItems = modalBody.querySelectorAll('.playlist-item');
+      playlistItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          var index = parseInt(this.getAttribute('data-index'));
+          playlistItems.forEach(function(pi) { pi.classList.remove('active'); });
+          this.classList.add('active');
+          loadVideo(hotspot.videos[index], index);
+        });
+      });
+    }, 100);
+  }
+
+  function showSermonModal(hotspot) {
+    saveMusicState();
+    pauseMusic();
+
+    var isMobile = document.body.classList.contains('mobile');
+    var sermonListPosition = isMobile ? 'bottom' : 'right';
+
+    modalContent.className = 'modal-content media-player-modal';
+    
+    var html = '<div class="media-player-container ' + sermonListPosition + '">';
+    html += '<div class="media-player-video">';
+    html += '<div id="mediaPlayerFrame"></div>';
+    html += '</div>';
+    html += '<div class="media-player-playlist">';
+    html += '<h3>' + hotspot.title + '</h3>';
+    html += '<div class="playlist-items">';
+    
+    hotspot.videos.forEach(function(video, index) {
+      var activeClass = index === 0 ? 'active' : '';
+      html += '<div class="playlist-item ' + activeClass + '" data-index="' + index + '">';
+      html += '<div class="playlist-item-title">' + video.title + '</div>';
+      if (hotspot.showTimes) {
+        var startTime = formatTime(video.startTime);
+        var endTime = formatTime(video.endTime);
+        html += '<div class="playlist-item-time">' + startTime + ' - ' + endTime + '</div>';
+      }
+      html += '</div>';
+    });
+    
+    html += '</div></div></div>';
+    
+    modalBody.innerHTML = html;
+    modalOverlay.classList.add('visible');
+
+    setTimeout(function() {
+      loadVideo(hotspot.videos[0], 0);
+      
+      var playlistItems = modalBody.querySelectorAll('.playlist-item');
+      playlistItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          var index = parseInt(this.getAttribute('data-index'));
+          playlistItems.forEach(function(pi) { pi.classList.remove('active'); });
+          this.classList.add('active');
+          loadVideo(hotspot.videos[index], index);
+        });
+      });
+    }, 100);
+  }
+
+  var currentPlayer = null;
+  var playerType = null;
+
+  function loadVideo(video, index) {
+    var frameEl = document.getElementById('mediaPlayerFrame');
+    
+    if (currentPlayer) {
+      if (playerType === 'youtube' && currentPlayer.destroy) {
+        currentPlayer.destroy();
+      }
+      currentPlayer = null;
+    }
+
+    if (video.url.includes('youtube.com') || video.url.includes('youtu.be')) {
+      loadYouTubeVideo(video, frameEl);
+    } else if (video.url.includes('vimeo.com')) {
+      loadVimeoVideo(video, frameEl);
+    }
+  }
+
+  function loadYouTubeVideo(video, frameEl) {
+    playerType = 'youtube';
+    var videoId = extractYouTubeId(video.url);
+    
+    frameEl.innerHTML = '<div id="ytPlayer"></div>';
+    
+    if (typeof YT === 'undefined' || !YT.Player) {
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      
+      window.onYouTubeIframeAPIReady = function() {
+        createYouTubePlayer(videoId, video);
+      };
+    } else {
+      createYouTubePlayer(videoId, video);
+    }
+  }
+
+  function createYouTubePlayer(videoId, video) {
+    currentPlayer = new YT.Player('ytPlayer', {
+      videoId: videoId,
+      playerVars: {
+        start: video.startTime || 0,
+        end: video.endTime || 0,
+        autoplay: 1
+      },
+      events: {
+        onStateChange: function(event) {
+          if (event.data === YT.PlayerState.ENDED && video.endTime) {
+            currentPlayer.seekTo(video.startTime || 0);
+            currentPlayer.playVideo();
+          }
+        }
+      }
+    });
+  }
+
+  function loadVimeoVideo(video, frameEl) {
+    playerType = 'vimeo';
+    var videoId = extractVimeoId(video.url);
+    
+    var startParam = video.startTime ? '#t=' + video.startTime + 's' : '';
+    var iframeSrc = 'https://player.vimeo.com/video/' + videoId + '?autoplay=1' + startParam;
+    
+    frameEl.innerHTML = '<iframe src="' + iframeSrc + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    
+    if (typeof Vimeo === 'undefined') {
+      var script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      document.head.appendChild(script);
+      
+      script.onload = function() {
+        setupVimeoPlayer(frameEl.querySelector('iframe'), video);
+      };
+    } else {
+      setupVimeoPlayer(frameEl.querySelector('iframe'), video);
+    }
+  }
+
+  function setupVimeoPlayer(iframe, video) {
+    currentPlayer = new Vimeo.Player(iframe);
+    
+    if (video.endTime) {
+      currentPlayer.on('timeupdate', function(data) {
+        if (data.seconds >= video.endTime) {
+          currentPlayer.setCurrentTime(video.startTime || 0);
+        }
+      });
+    }
+  }
+
+  function extractYouTubeId(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match && match[7].length === 11) ? match[7] : null;
+  }
+
+  function extractVimeoId(url) {
+    var regExp = /vimeo.*\/(\d+)/i;
+    var match = url.match(regExp);
+    return match ? match[1] : null;
+  }
+
+  function formatTime(seconds) {
+    var mins = Math.floor(seconds / 60);
+    var secs = seconds % 60;
+    return mins + ':' + (secs < 10 ? '0' : '') + secs;
+  }
+
+//customHotspots ends
 
   function sanitize(s) {
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');

@@ -113,7 +113,63 @@ var APP_DATA = {
           "title": "Website",
           "text": "website text"
         }
-      ]
+      ],
+	  "customHotspots": [
+        {
+          "type": "worship",
+          "yaw": -0.027983973780564497,
+          "pitch": 0.05,
+          "title": "Worship Songs",
+          "showTimes": false,
+          "videos": [
+            {
+              "title": "Amazing Grace",
+              "url": "https://www.youtube.com/watch?v=CDdvReNKKuk",
+              "startTime": 0,
+              "endTime": 240
+            },
+            {
+              "title": "How Great Thou Art",
+              "url": "https://www.youtube.com/watch?v=Cc2KPbLowL4",
+              "startTime": 0,
+              "endTime": 180
+            },
+            {
+              "title": "Blessed Assurance",
+              "url": "https://www.youtube.com/watch?v=5qap5aO4i9A",
+              "startTime": 0,
+              "endTime": 200
+            }
+          ]
+        },
+        {
+          "type": "sermon",
+          "yaw": 0.32614813024450484,
+          "pitch": 0.05,
+          "title": "Recent Sermons",
+          "showTimes": true,
+          "videos": [
+            {
+              "title": "Faith in Action",
+              "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+              "startTime": 0,
+              "endTime": 1800
+            },
+            {
+              "title": "Walking in Grace",
+              "url": "https://vimeo.com/148751763",
+              "startTime": 0,
+              "endTime": 1500
+            },
+            {
+              "title": "The Power of Prayer",
+              "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+              "startTime": 0,
+              "endTime": 2000
+            }
+          ]
+        }
+	  ]
     }
   ],
   "name": "Lima Community Church of the Nazarene",
