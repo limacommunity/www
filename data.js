@@ -168,12 +168,12 @@ var APP_DATA = {
         },
 		{
           "type": "link",
-          "yaw": 0.1838138789089534,
+          "yaw": 0,
           "pitch": 0.4051673205002544,
           "title": "Tour our church!",
           "text": "⛪ Virtual Tour",
           "url": "https://limacommunitychurch.com/tour",
-          "newTab": true
+          "newTab": false
         }
 	  ]
     }
