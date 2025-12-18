@@ -693,6 +693,8 @@
 
   // Display the initial scene.
   switchScene(scenes[0]);
+  // Menu event listeners
+  menuToggleElement.addEventListener('click', toggleMenu);
   toggleMenu();
 
 })();
