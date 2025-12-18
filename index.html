@@ -349,10 +349,6 @@
 
 /* Custom Hotspot Styles */
 .custom-hotspot {
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  margin-top: -25px;
   opacity: 0.9;
   transition: opacity 0.2s, transform 0.2s;
   cursor: pointer;
@@ -360,7 +356,16 @@
 
 .custom-hotspot:hover {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+/* Icon-based hotspots (worship, sermon) */
+.custom-hotspot-worship,
+.custom-hotspot-sermon {
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
 }
 
 .custom-hotspot-icon {
@@ -378,6 +383,80 @@
   width: 30px;
   height: 30px;
   fill: #000;
+}
+
+/* Link button hotspot */
+.custom-hotspot-link {
+  margin-left: 0;
+  margin-top: 0;
+  transform: translate(-50%, -50%);
+}
+
+.custom-hotspot-link-button {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  min-width: 120px;
+  transition: all 0.2s;
+}
+
+.custom-hotspot-link:hover .custom-hotspot-link-button {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.mobile .custom-hotspot-link-button {
+  padding: 14px 28px;
+  font-size: 16px;
+}
+
+/* Custom Hotspot Tooltips */
+.custom-hotspot-tooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: rgba(58, 68, 84, 0.9);
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.custom-hotspot:hover .custom-hotspot-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(5px);
+}
+
+/* Tooltip positioning for link buttons */
+.custom-hotspot-link .custom-hotspot-tooltip {
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0);
+  margin-left: 0;
+  margin-top: 10px;
+}
+
+.custom-hotspot-link:hover .custom-hotspot-tooltip {
+  transform: translate(-50%, 5px);
+}
+
+/* Mobile tooltip adjustments */
+.mobile .custom-hotspot-tooltip {
+  font-size: 12px;
+  padding: 6px 10px;
 }
 
 /* Media Player Modal Styles */
