@@ -187,11 +187,3 @@ var APP_DATA = {
 	"customMusic": true
   }
 };
-     "infoHotspots": [
-        {
-          "yaw": 0.1838138789089534,
-          "pitch": 0.4051673205002544,
-          "title": "Website",
-          "text": "TODO - Add link to website or tour."
-        }
-      ],
