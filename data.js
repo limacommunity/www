@@ -108,7 +108,7 @@ var APP_DATA = {
           "yaw": -0.027983973780564497,
           "pitch": 0.1554934256337841,
           "text": "Worship Songs",
-		  "title": "Worship Songs - Press [ ] in lower corner for full screen",
+		  "title": "Worship Songs",
           "showTimes": false,
           "videos": [
             {
@@ -136,7 +136,7 @@ var APP_DATA = {
           "yaw": 0.32614813024450484,
           "pitch": 0.16105605682769308,
 		  "text": "Sermons",
-          "title": "Sermons - Press [ ] in lower corner for full screen",
+          "title": "Sermons",
           "showTimes": false,
           "videos": [
             {
@@ -175,9 +175,9 @@ var APP_DATA = {
           "type": "link",
           "yaw": 0.1838138789089534,
           "pitch": 0.3,
-          "title": "Visit our website for more information",
-          "text": "Learn More",
-          "url": "https://limacommunitychurch.com",
+          "title": "Tour our church!",
+          "text": "⛪ Tour",
+          "url": "https://limacommunitychurch.com/tour",
           "newTab": true
         }
 	  ]
