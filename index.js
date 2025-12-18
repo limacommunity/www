@@ -447,14 +447,12 @@
     }
   }
   
-  function toggleMenu() {
-    mainMenuElement.classList.toggle('enabled');
-    menuToggleElement.classList.toggle('enabled');
+ function toggleMenu() {
+    mainMenuElement.classList.toggle('hidden');
   }
   
   function hideMenu() {
-    mainMenuElement.classList.remove('enabled');
-    menuToggleElement.classList.remove('enabled');
+    mainMenuElement.classList.add('hidden');
   }
   
   // Menu event listeners
