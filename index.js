@@ -447,6 +447,10 @@
     }
   }
   
+ function showMenu() {
+   mainMenuElement.classList.add('enabled');
+ }
+  
  function toggleMenu() {
     console.log('Toggle menu clicked');
     console.log('Current classes:', mainMenuElement.className);
@@ -472,10 +476,13 @@
   
   // Build the menu
   buildMenu();
+  showMenu();
   
   if (document.body.classList.contains('mobile')) {
         hideMenu();
-      }
+      } else {
+		showMenu();
+	  }
 
 
   function sanitize(s) {
